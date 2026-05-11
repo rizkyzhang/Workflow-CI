@@ -1,0 +1,13 @@
+name: superstore-sales
+channels:
+  - defaults
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+    - pandas
+    - scikit-learn
+    - mlflow
+    - dagshub
+    - matplotlib
+    - python-dotenv
