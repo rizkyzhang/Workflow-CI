@@ -1,16 +1,18 @@
+import os
 from dotenv import load_dotenv
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+import dagshub
 import mlflow
 import mlflow.sklearn
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
 load_dotenv()
-mlflow.set_tracking_uri("https://dagshub.com/rizkyzhang/Superstore_Sales_Predict.mlflow")
+dagshub.init(repo_owner="rizkyzhang", repo_name="Superstore_Sales_Predict", mlflow=True)
 mlflow.set_experiment("superstore-sales-baseline")
 
 df = pd.read_csv("sample_superstore_preprocessing.csv")
