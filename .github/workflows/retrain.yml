@@ -10,20 +10,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up Miniconda
-        uses: conda-incubator/setup-miniconda@v3
+      - name: Set up Python
+        uses: actions/setup-python@v6
         with:
           python-version: "3.13"
-          auto-activate-base: true
 
-      - name: Install MLflow
-        run: pip install mlflow
+      - name: Install dependencies
+        run: pip install mlflow pandas scikit-learn matplotlib dagshub python-dotenv
 
       - name: Run MLflow Project
         env:
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
-        run: mlflow run MLProject
+        run: mlflow run MLProject --env-manager=local
 
       - name: Upload model artifact
         uses: actions/upload-artifact@v7
