@@ -20,6 +20,7 @@ jobs:
 
       - name: Run MLflow Project
         env:
+          MLFLOW_TRACKING_URI: https://dagshub.com/rizkyzhang/Superstore_Sales_Predict_Test.mlflow
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: mlflow run MLProject --env-manager=local
@@ -32,7 +33,7 @@ jobs:
 
       - name: Build Docker image
         env:
-          MLFLOW_TRACKING_URI: https://dagshub.com/rizkyzhang/Superstore_Sales_Predict.mlflow
+          MLFLOW_TRACKING_URI: https://dagshub.com/rizkyzhang/Superstore_Sales_Predict_Test.mlflow
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
         run: mlflow models build-docker -m "models:/SuperstoreSalesModel/latest" -n ${{ secrets.DOCKERHUB_USERNAME }}/superstore-sales
