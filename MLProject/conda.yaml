@@ -9,5 +9,4 @@ dependencies:
     - scikit-learn
     - mlflow
     - dagshub
-    - matplotlib
     - python-dotenv
